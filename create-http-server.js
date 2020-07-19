@@ -28,7 +28,8 @@ const server = http.createServer();
 server.on('request',(req,res)=>{
     console.log(req.url);
     console.log('Request Received');
-    setTimeout(()=>{ res.end("Request Received");},10000);    
+    //setTimeout(()=>{ res.end("Request Received");},10000); 
+    res.end("Request Received");
 });
 
 //using this approcah we can listen to multiple listners, but we can give only one response at a time
