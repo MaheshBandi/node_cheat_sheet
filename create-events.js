@@ -1,7 +1,15 @@
 const EventEmmitter =  require('events');
 
+//Es6Way 
+class sales extends EventEmmitter{
+    constructor(){
+        super();
+    }
+}
 
-const sampleEvent =  new EventEmmitter();
+//const sampleEvent =  new EventEmmitter();
+//Es6Way 
+const sampleEvent = new sales();
 
 //Listner1
 sampleEvent.on('newSale',()=>{
