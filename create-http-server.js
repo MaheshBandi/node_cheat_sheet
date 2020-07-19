@@ -2,8 +2,18 @@
 
 const http = require('http');
 
-http.createServer((req,res)=>{
+
+// http.createServer((req,res)=>{
+//     res.end('Hello from server')
+// }).listen("8000",()=>{
+//     console.log("Server started at port 8000");
+// });
+
+//Alternate way by assigning to a local variable
+const server = http.createServer((req,res)=>{
     res.end('Hello from server')
-}).listen("8000",()=>{
-    console.log("Server started at port 8000");
+});
+
+server.listen("8000",()=>{
+         console.log("Server started at port 8000");
 });
