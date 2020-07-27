@@ -97,11 +97,16 @@ const deleteTour = (req, res) => {
     res.status(204).json({});
   });
 };
-app.get('/api/v1/tours', getAllTours);
-app.get('/api/v1/tours/:id/:optionalParam?', getTour); //use ? to specify the optional params
-app.post('/api/v1/tours', createTour);
-app.patch('/api/v1/tours/:id', updateTour);
-app.delete('/api/v1/tours/:id', deleteTour);
+//app.get('/api/v1/tours', getAllTours);
+//app.get('/api/v1/tours/:id/:optionalParam?', getTour); //use ? to specify the optional params
+//app.post('/api/v1/tours', createTour);
+//app.patch('/api/v1/tours/:id', updateTour);
+//app.delete('/api/v1/tours/:id', deleteTour);
+
+//use app.route to combine the common routes
+app.route('/api/v1/tours').get(getAllTours).post(createTour);
+app.route('/api/v1/tours/:id').get(getTour).patch(updateTour).delete(deleteTour);
+
 const port = 3000;
 app.listen(port, () => {
   console.log(`App started at port ${port}`);
