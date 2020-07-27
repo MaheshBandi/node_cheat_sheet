@@ -2,9 +2,11 @@ const express = require('express');
 const fs = require('fs');
 const path = require('path');
 const app = express();
+const morgan = require('morgan');
 
 //middleware to read the post boday
 app.use(express.json());
+app.use(morgan('dev')); //use morgan  to log the incomming request in the console or log
 
 //sample middleware
 app.use((req,res,next)=>{

@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "description": "",
   "main": "create-events.js",
-  "scripts":  { 
-    "start": "nodemon express-example/app/app.js" 
+  "scripts": {
+    "start": "nodemon express-example/app/app.js"
   },
   "repository": {
     "type": "git",
@@ -18,7 +18,7 @@
   "homepage": "https://github.com/MaheshBandi/node_cheat_sheet#readme",
   "dependencies": {
     "express": "^4.17.1",
+    "morgan": "^1.10.0",
     "nodemon": "^2.0.4"
   }
-  
 }
