@@ -6,6 +6,12 @@ const app = express();
 //middleware to read the post boday
 app.use(express.json());
 
+//sample middleware
+app.use((req,res,next)=>{
+    console.log('Hello from middleware');
+    next();
+});
+
 // app.get('/',(req,res)=>{
 //     //res.status(200).send('Hello from server side!');
 //     // or send json directly
