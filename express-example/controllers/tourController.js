@@ -4,6 +4,16 @@ const path = require('path');
 const dirPath = path.join(__dirname, '../helpers/data/tours-simple.json');
 const tours = JSON.parse(fs.readFileSync(dirPath));
 
+exports.checkId = (req,res,next,value)=>{
+  const id = req.params.id * 1; // use this trick to convert string to int
+  if (id > tours.length) {
+    return res.status(404).json({
+      status: 'failed',
+      message: 'Invalid ID',
+    });
+  }
+  next();
+}
  exports.getAllTours = (req, res) => {
   res.status(200).json({
     status: 'success',
@@ -15,13 +25,6 @@ const tours = JSON.parse(fs.readFileSync(dirPath));
 
 exports.getTour = (req, res) => {
   const id = req.params.id * 1; // use this trick to convert string to int
-  if (id > tours.length) {
-    return res.status(404).json({
-      status: 'failed',
-      message: 'Invalid ID',
-    });
-  }
-
   const tour = tours.find((el) => el.id === id);
   res.status(200).json({
     status: 'success',
@@ -42,13 +45,7 @@ exports.createTour = (req, res) => {
 };
 
 exports.updateTour = (req, res) => {
-  const id = req.params.id * 1; // use this trick to convert string to int
-  if (id > tours.length) {
-    return res.status(404).json({
-      status: 'failed',
-      message: 'Invalid ID',
-    });
-  }
+  const id = req.params.id * 1; // use this trick to convert string to int  
   const tour = tours.find((el) => el.id === id);
   const updatedTour = { ...tour, ...req.body };
   tours[id] = updatedTour;
@@ -60,16 +57,7 @@ exports.updateTour = (req, res) => {
 
 exports.deleteTour = (req, res) => {
   const id = req.params.id * 1; // use this trick to convert string to int
-  const tour = tours.find((el) => el.id === id);
-  if (!tour) {
-    return res.status(404).json({
-      status: 'failed',
-      message: 'Invalid ID',
-    });
-  }
-
-  const filterItems = tours.filter((el) => el.id != id);
-  
+  const filterItems = tours.filter((el) => el.id != id);  
   fs.writeFile(dirPath, JSON.stringify(filterItems, null, 2), (err) => {
     if (err) return console.log(err);
     res.status(204).json({});
