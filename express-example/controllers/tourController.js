@@ -5,6 +5,10 @@ const dirPath = path.join(__dirname, '../helpers/data/tours-simple.json');
 const tours = JSON.parse(fs.readFileSync(dirPath));
 
 
+exports.sampleMiddleWare = (req,res,next)=>{
+  console.log('sample middleware');
+  next();
+}
 exports.checkId = (req,res,next,value)=>{
   const id = req.params.id * 1; // use this trick to convert string to int
   if (id > tours.length) {
@@ -15,6 +19,7 @@ exports.checkId = (req,res,next,value)=>{
   }
   next();
 }
+
 
 exports.checkBody = (req,res,next)=>{
 if(!req.body.name || !req.body.price){
