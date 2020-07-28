@@ -4,7 +4,7 @@
   "description": "",
   "main": "create-events.js",
   "scripts": {
-    "start": "nodemon express-example/app/app.js"
+    "start": "nodemon express-example/server.js"
   },
   "repository": {
     "type": "git",

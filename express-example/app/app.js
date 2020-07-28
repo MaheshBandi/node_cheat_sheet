@@ -11,10 +11,8 @@ app.use((req,res,next)=>{
     console.log('Hello from middleware');
     next();
 });
-
 app.use('/api/v1/tours',tourRouter);
+module.exports = app;
 
-const port = 3000;
-app.listen(port, () => {
-  console.log(`App started at port ${port}`);
-});
+
+
